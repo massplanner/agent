@@ -44,4 +44,4 @@ pipenv install -r requirements.txt  # If you have a requirements.txt file
 echo "Installation complete. You can now run your program using 'python massplanner.py'"
 
 # Deactivate the virtual environment when done
-deactivate
+exit

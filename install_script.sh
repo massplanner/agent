@@ -44,7 +44,7 @@ python3.9 -m pipenv sync
 python3.9 -m pipenv shell
 
 # Provide instructions for running the program
-echo "Installation complete. You can now run your program using 'python massplanner-agent/executable.py'"
+echo "Installation complete. You can now run your program using 'python massplanner.py --resume /path/to/resume/location'"
 
 # Deactivate the virtual environment when done
 deactivate

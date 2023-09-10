@@ -3,7 +3,7 @@
 # Define variables
 PROJECT_NAME="massplanner"
 VENV_NAME="venv"
-DOWNLOAD_URL="https://github.com/massplanner/agent.zip"  # Replace with your project's download URL
+DOWNLOAD_URL="http://github.com/massplanner/agent/zipball/master/"  # Replace with your project's download URL
 
 # Create a directory for the project
 mkdir -p $PROJECT_NAME

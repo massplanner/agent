@@ -9,13 +9,19 @@ activate_virtualenv() {
 
   if [ "$ACTIVATE" = "y" ]; then
     if command -v pipenv >/dev/null; then
+      # Install pipenv for Python 3.9
+      python3.9 -m pip install pipenv
+
+      # Navigate to the project directory containing your Python program
+      cd $PROJECT_NAME  # This should be the current directory now
+
       # Create a virtual environment for Python 3.9 and install project dependencies
       python3.9 -m pipenv --python 3.9 install
 
       # Install the dependencies from the Pipfile.lock file
       python3.9 -m pipenv sync
 
-      echo "Installation complete. You can now run your program using 'python massplanner.py --resume /path/to/resume/location'"
+      echo "Installation complete. You can now run your program using 'python massplanner.py'"
       
       # Activate the virtual environment
       python3.9 -m pipenv shell
@@ -23,8 +29,8 @@ activate_virtualenv() {
       echo "pipenv not found, skipping virtualenv activation"
     fi
   else
-    echo "Skipping virtualenv activation"
-    echo "Installation complete. You can now run your program using 'python massplanner-agent/massplanner.py --resume /path/to/resume/location'"
+    echo "Installation complete. Skipping virtualenv activation"
+    echo "You can now run your program using 'python3.9 massplanner-agent/massplanner.py'"
   fi
 }
 
@@ -51,12 +57,6 @@ fi
 # Create a directory for the project and copy the contents
 mkdir -p $PROJECT_NAME
 cp -r $PROGRAM_DIR/* $PROJECT_NAME
-
-# Install pipenv for Python 3.9
-python3.9 -m pip install pipenv
-
-# Navigate to the project directory containing your Python program
-cd $PROJECT_NAME  # This should be the current directory now
 
 activate_virtualenv
 

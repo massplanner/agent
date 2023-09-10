@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 openai = "*"
+prompt-toolkit = "*"
 
 [dev-packages]
 

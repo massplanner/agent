@@ -4,30 +4,6 @@
 PROJECT_NAME="massplanner-agent"
 DOWNLOAD_URL="http://github.com/massplanner/agent/zipball/master/"  # Replace with your project's download URL
 
-activate_virtualenv() {
-  read -p "Activate the virtualenv? (y/n) " ACTIVATE
-
-  if [ "$ACTIVATE" = "y" ]; then
-    if command -v pipenv >/dev/null; then
-      # Create a virtual environment for Python 3.9 and install project dependencies
-      python3.9 -m pipenv --python 3.9 install
-
-      # Install the dependencies from the Pipfile.lock file
-      python3.9 -m pipenv sync
-
-      echo "Installation complete. You can now run your program using 'python massplanner.py --resume /path/to/resume/location'"
-      
-      # Activate the virtual environment
-      python3.9 -m pipenv shell
-    else
-      echo "pipenv not found, skipping virtualenv activation"
-    fi
-  else
-    echo "Skipping virtualenv activation"
-    echo "Installation complete. You can now run your program using 'python massplanner-agent/massplanner.py --resume /path/to/resume/location'"
-  fi
-}
-
 # Create a temporary directory for the project
 TEMP_DIR=$(mktemp -d)
 
@@ -58,7 +34,17 @@ python3.9 -m pip install pipenv
 # Navigate to the project directory containing your Python program
 cd $PROJECT_NAME  # This should be the current directory now
 
-activate_virtualenv
+# Create a virtual environment for Python 3.9 and install project dependencies
+python3.9 -m pipenv --python 3.9 install
+
+# Install the dependencies from the Pipfile.lock file
+python3.9 -m pipenv sync
+
+# Activate the virtual environment
+python3.9 -m pipenv shell
+
+# Provide instructions for running the program
+echo "Installation complete. You can now run your program using 'python massplanner.py --resume /path/to/resume/location'"
 
 # Deactivate the virtual environment when done
-exit
+deactivate
